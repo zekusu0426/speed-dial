@@ -1,0 +1,26 @@
+<h1>Bookmark</h1>
+
+<% if user_signed_in? %>
+  <p><%= link_to('ログアウト', destroy_user_session_path, method: :delete) %></p>
+  <% @bookmarks.each do |bookmark| %>
+    <div class="panel">
+      <a href="<%= bookmark.url %>">
+        <h4><%= bookmark.title %></h4>
+      </a>
+      <p><%= bookmark.url %></p>
+      <p><%= image_tag bookmark.image, width: 120 %></p>
+      <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
+    </div>
+  <% end %>
+
+  <%= form_for(current_user.bookmarks.new) do |f| %>
+    Title:<%= f.text_field :title %><br>
+    Url  :<%= f.url_field :url %><br>
+    Image:<%= f.text_field :image %><br>
+    <%= f.submit %><br>
+  <% end %>
+<% else %>
+  <%= link_to('ログイン', new_user_session_path) %>
+<% end %>
+
+<!-- kayleigh@gottlieb.name -->
