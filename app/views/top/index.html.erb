@@ -1,8 +1,17 @@
 <h1>Bookmark</h1>
 
+<!-- modal test ↓-->
+<!-- Button to trigger modal -->
+<a href="#modaltest" role="button" class="btn" data-toggle="modal">新規登録</a>
+<!-- modal test ↑ -->
+
+
 <% if user_signed_in? %>
   <p><%= link_to('ログアウト', destroy_user_session_path, method: :delete) %></p>
+
+<div class="row">
   <% @bookmarks.each do |bookmark| %>
+  <div class="col-xs-6 col-sm-4 col-md-2">
     <div class="panel">
       <a href="<%= bookmark.url %>">
         <h4><%= bookmark.title %></h4>
@@ -11,16 +20,40 @@
       <p><%= image_tag bookmark.image, width: 120 %></p>
       <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
     </div>
+  </div>
   <% end %>
 
-  <%= form_for(current_user.bookmarks.new) do |f| %>
-    Title:<%= f.text_field :title %><br>
-    Url  :<%= f.url_field :url %><br>
-    Image:<%= f.text_field :image %><br>
-    <%= f.submit %><br>
-  <% end %>
 <% else %>
   <%= link_to('ログイン', new_user_session_path) %>
 <% end %>
+</div>
+
 
 <!-- kayleigh@gottlieb.name -->
+<!-- cindy@kiehn.biz -->
+
+
+
+<!-- Modal -->
+<div id="modaltest" class="modal fade">  <!-- Modal本体 -->
+    <div class="modal-dialog"> <!-- Modalダイアログ部分 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>  <!-- closeボタン -->
+                <h4 class="modal-title">お気に入り登録</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_for(current_user.bookmarks.new) do |f| %>
+              Title:<%= f.text_field :title %><br>
+              Url  :<%= f.url_field :url %><br>
+              Image:<%= f.text_field :image %><br>
+              <%= f.submit %><br>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
