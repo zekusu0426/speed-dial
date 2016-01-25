@@ -17,4 +17,7 @@
 
 class Bookmark < ActiveRecord::Base
   belongs_to :user
+
+  # title,urlを追加するときは必須です。
+  validates :title,:url ,presence: true
 end
