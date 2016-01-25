@@ -1,9 +1,8 @@
 <h1>Bookmark</h1>
 
-<!-- modal test ↓-->
-<!-- Button to trigger modal -->
+<!-- 新規作成 -->
 <a href="#modaltest" role="button" class="btn" data-toggle="modal">新規登録</a>
-<!-- modal test ↑ -->
+
 
 
 <% if user_signed_in? %>
@@ -13,7 +12,7 @@
   <% @bookmarks.each do |bookmark| %>
   <div class="col-xs-6 col-sm-4 col-md-2">
     <div class="panel">
-      <a href="<%= bookmark.url %>">
+      <a href="<%= bookmark.url %>" target="_blank">
         <h4><%= bookmark.title %></h4>
       </a>
       <p><%= bookmark.url %></p>
@@ -34,26 +33,40 @@
 
 
 
-<!-- Modal -->
+<!-- 新規作成ダイアログ -->
 <div id="modaltest" class="modal fade">  <!-- Modal本体 -->
     <div class="modal-dialog"> <!-- Modalダイアログ部分 -->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>  <!-- closeボタン -->
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">お気に入り登録</h4>
             </div>
             <div class="modal-body">
-              <%= form_for(current_user.bookmarks.new) do |f| %>
-              Title:<%= f.text_field :title %><br>
-              Url  :<%= f.url_field :url %><br>
-              Image:<%= f.text_field :image %><br>
-              <%= f.submit %><br>
-              <% end %>
+              <div class="form-horizontal" role="form">
+                <%= form_for(current_user.bookmarks.new) do |f| %>
+                <div class="form-group">
+                  <%= f.label :"Site_name", :class => "col-sm-3 control-label" %>
+                  <div class="col-sm-7"><%= f.text_field :title, :class => "form-control" %></div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :"URL", :class => "col-sm-3 control-label" %>
+                  <div class="col-sm-7"><%= f.url_field :url, :class => "form-control" %></div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :"Image_URL", :class => "col-sm-3 control-label" %>
+                  <div class="col-sm-7"><%= f.text_field :image, :class => "form-control" %></div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-2 col-sm-offset-3">
+                    <%= f.submit "save", :input_html => {"data-dismiss" => "modal", "aria-hidden" => "true"}, :class => "btn btn-primary" %>
+                  </div>
+                  <div class="col-sm-2">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">close</button>
+                  </div>
+                </div>
+                <% end %>
+              </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
