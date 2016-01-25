@@ -7,26 +7,38 @@
 
 <% if user_signed_in? %>
   <p><%= link_to('ログアウト', destroy_user_session_path, method: :delete) %></p>
-
-<div class="row">
-  <% @bookmarks.each do |bookmark| %>
-  <div class="col-xs-6 col-sm-4 col-md-2">
-    <div class="panel">
-      <a href="<%= bookmark.url %>" target="_blank">
-        <h4><%= bookmark.title %></h4>
-      </a>
-      <p><%= bookmark.url %></p>
-      <p><%= image_tag bookmark.image, width: 120 %></p>
-      <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
-    </div>
-  </div>
-  <% end %>
-
 <% else %>
   <%= link_to('ログイン', new_user_session_path) %>
 <% end %>
-</div>
 
+<div class="row">
+  <% @bookmarks.each do |bookmark| %>
+  <div class="col-xs-6 col-sm-4 col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= image_tag bookmark.image, width: 120 %>
+      </div>
+      <div class="panel-footer">
+        <a href="<%= bookmark.url %>" target="_blank"><h4><%= bookmark.title %></h4>
+        </a>
+        <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <!-- Example -->
+  <div class="col-xs-6 col-sm-4 col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <%= image_tag asset_path('/assets/sample.png'), :class => "card-img-top" ,width: 120%>
+      </div>
+      <div class="panel-footer">
+        <a href="#" target="_blank"><h4>Example</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- kayleigh@gottlieb.name -->
 <!-- cindy@kiehn.biz -->
