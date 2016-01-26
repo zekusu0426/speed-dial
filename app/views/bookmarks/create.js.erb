@@ -1,0 +1,4 @@
+$('button.close').click();
+$('#bookmark-list').append("<%=j render(current_user.bookmarks.last) %>");
+
+// たぶんaddがbookmarkにないから render側にbutton.closeがあるから

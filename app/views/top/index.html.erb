@@ -10,33 +10,22 @@
   <%= link_to('ログイン', new_user_session_path) %>
 <% end %>
 
-<div class="row">
-  <% @bookmarks.each do |bookmark| %>
-  <div class="col-xs-6 col-sm-4 col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= image_tag bookmark.image, width: 120 %>
-      </div>
-      <div class="panel-footer">
-        <a href="<%= bookmark.url %>" target="_blank"><h4><%= bookmark.title %></h4>
-        </a>
-        <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
-      </div>
-    </div>
-  </div>
-  <% end %>
+<div id="bookmark-list" class="row">
+<%= render @bookmarks %>
+</div>
+<div class="add"></div>
   <!-- Example -->
-  <div class="col-xs-6 col-sm-4 col-md-3">
+<!--   <div class="col-xs-6 col-sm-4 col-md-3">
     <div class="panel panel-default">
       <div class="panel-body">
-          <%= image_tag asset_path('/assets/sample.png'), :class => "card-img-top" ,width: 120%>
+          <%#= image_tag asset_path('/assets/sample.png'), :class => "card-img-top" ,width: 120%>
       </div>
       <div class="panel-footer">
         <a href="#" target="_blank"><h4>Example</h4>
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <!-- kayleigh@gottlieb.name -->

@@ -29,10 +29,11 @@ class BookmarksController < ApplicationController
     respond_to do |format|
       if @bookmark.save
         format.html { redirect_to root_url, notice: 'Bookmark was successfully created.' }
-        format.json { render :show, status: :created, location: @bookmark }
+        format.js#   { render :show, status: :created, location: @bookmark }
       else
-        format.html { render :new }
-        format.json { render json: @bookmark.errors, status: :unprocessable_entity }
+        format.js {render js: "alert('フォームに入力してください。');"}
+        #format.html { render :new }
+        #format.json   { render json: @bookmark.errors, status: :unprocessable_entity }
       end
     end
   end

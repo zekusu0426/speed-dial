@@ -1,0 +1,12 @@
+<div id="bookmark-<%= bookmark.id %>" class="col-xs-6 col-sm-4 col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= image_tag bookmark.image, width: 120 %>
+      </div>
+      <div class="panel-footer">
+        <a href="<%= bookmark.url %>" target="_blank"><h4><%= bookmark.title %></h4>
+        </a>
+        <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
+      </div>
+    </div>
+</div>
