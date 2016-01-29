@@ -1,5 +1,5 @@
 <div class="form-horizontal" role="form">
-  <%= form_for(b = current_user.bookmarks.new,remote: 'true') do |f| %>
+  <%= form_for(b = current_user.bookmarks.new,remote: true) do |f| %>
     <%#= b.errors %>
     <div class="form-group">
       <%= f.label :"Site_name", :class => "col-sm-3 control-label" %>

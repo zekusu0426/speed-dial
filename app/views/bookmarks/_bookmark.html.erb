@@ -6,7 +6,7 @@
       <div class="panel-footer">
         <a href="<%= bookmark.url %>" target="_blank"><h4><%= bookmark.title %></h4>
         </a>
-        <p><%= link_to('削除', bookmark_path(bookmark), method: :delete) %></p>
+        <p><%= link_to('削除', bookmark_path(bookmark),remote: true, method: :delete) %></p>
       </div>
     </div>
 </div>
